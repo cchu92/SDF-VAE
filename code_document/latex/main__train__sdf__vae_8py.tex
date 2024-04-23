@@ -1,0 +1,97 @@
+\doxysection{src/main\+\_\+train\+\_\+sdf\+\_\+vae.py File Reference}
+\hypertarget{main__train__sdf__vae_8py}{}\label{main__train__sdf__vae_8py}\index{src/main\_train\_sdf\_vae.py@{src/main\_train\_sdf\_vae.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacemain__train__sdf__vae}{main\+\_\+train\+\_\+sdf\+\_\+vae}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+lossfunc}} (sdf, \mbox{\hyperlink{namespacemain__train__sdf__vae_aa5892a78f475e930c8f89ea7f4bb0b33}{sdf\+\_\+hat}}, iso, \mbox{\hyperlink{namespacemain__train__sdf__vae_a192b11735b5f58039e3a0f4b4da3aa86}{iso\+\_\+hat}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a86eb619450695f4c6d1d3de3f3047c32}{mu}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a758b22a4984b8c228413096d7962d567}{logvar}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_aff79509cba4ad21a42b57be71e19a729}{beta}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+config}} = json.\+load(f)
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+batch\+\_\+size}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}batch\+\_\+size\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+latent\+\_\+dim}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}latent\+\_\+dim\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aff79509cba4ad21a42b57be71e19a729}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+beta}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}beta\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a55e5a67fc29ff74d31c40e109d22d399}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+learning\+\_\+rate}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}learning\+\_\+rate\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_af971a13cfbebc7ff89e7d12fe95a4afe}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+epochs}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}epochs\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a9ecafbcdd8c29c2c43315a1feba51441}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+manual\+\_\+seed}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}random\+\_\+seed\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}manual\+\_\+seed\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ababed1a6b8e88ac368862bc3bfbbec55}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+cuda\+\_\+manual\+\_\+seed}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}random\+\_\+seed\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}cuda\+\_\+manual\+\_\+seed\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a6be6b7ce46d5160d499180fafe067baa}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+loading\+\_\+checkpoint}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}loading\+\_\+checkpoint\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+data\+\_\+path\+\_\+train}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}train\+\_\+data\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a46823295cf555c0b8da6939b676355bb}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+data\+\_\+path\+\_\+test}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}test\+\_\+data\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_af2a5c594df07a846601e78e5b076ef4d}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+path}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}save\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+checkpoint\+\_\+path}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}log\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+int \mbox{\hyperlink{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+dimen}} = 30
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+dataset\+\_\+train}} = \mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{SDFDataset}}(\mbox{\hyperlink{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d}{data\+\_\+path\+\_\+train}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a3fa26398e18dc38a0ea79e9e3646d16a}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+loader\+\_\+train}} = Data\+Loader(\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{dataset\+\_\+train}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}, shuffle=True)
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a583d7c3cb424b7ef60dfa298e96a9c3d}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+loader\+\_\+test}} = Data\+Loader(\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{dataset\+\_\+train}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}, shuffle=True)
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a21508ee27eea43fa4df1f1c3b57a8b62}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+model}} = \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e}{SDF\+\_\+\+VAE}}(input\+\_\+channels=1, \mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{latent\+\_\+dim}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{latent\+\_\+dim}}, D=\mbox{\hyperlink{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3}{sdf\+\_\+dimen}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+device}} = torch.\+device("{}cuda\+:0"{})
+\item 
+bool \mbox{\hyperlink{namespacemain__train__sdf__vae_af34885763f6a530ef7a63850a4ee7e64}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+GPU}} = True
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ad95d6d0c738adf945cc174e6cb32cd41}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+optimizer}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+checkpoint}} = torch.\+load(\mbox{\hyperlink{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604}{checkpoint\+\_\+path}}+\textquotesingle{}checkpoint.\+tar\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a3dbfd8edf7e8e094bdd87446604f5cd8}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+current\+\_\+epoch}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{checkpoint}}\mbox{[}\textquotesingle{}epoch\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ab7c0e4d61b96e7f3fc88e0e8616d6b5e}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+loss}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{checkpoint}}\mbox{[}\textquotesingle{}loss\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_acf1caf3d9a32525fff91a3547811585c}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+mu\+\_\+list}} = list()
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a81e0b08960d68e2864b9f16dbcc6415f}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+test\+\_\+list}} = list()
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+isov\+\_\+test\+\_\+list}} = list()
+\item 
+int \mbox{\hyperlink{namespacemain__train__sdf__vae_a66ee3538a50260ce3264150d619c18bb}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+train\+\_\+loss}} = 0
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a53e33e0f261bcd0db416919c277cefd4}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+data}} = sdf\+\_\+data.\+to(\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{device}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_af4d5f1c6f5d489e829c9e23b2fb1faef}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+isovalues}} = isovalues.\+to(\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{device}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aa5892a78f475e930c8f89ea7f4bb0b33}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+hat}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a192b11735b5f58039e3a0f4b4da3aa86}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+iso\+\_\+hat}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a86eb619450695f4c6d1d3de3f3047c32}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+mu}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a758b22a4984b8c228413096d7962d567}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+logvar}}
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_ae7056d51e0e394c73ff3f7c23f30d62f}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+model}} = \textquotesingle{}VAEmodel\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_a3566212d6ab7ef421a82beedd87ee7f1}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+mu}} = \textquotesingle{}mu\+\_\+list\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a8535eca40025c2afcbc2402ee4cf0029}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+mu\+\_\+list\+\_\+test}} = list()
+\item 
+int \mbox{\hyperlink{namespacemain__train__sdf__vae_a2cf92e104349d90af939e839f8c61d64}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+test\+\_\+loss}} = 0
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_a9122645b490b172db17b153509d71fd7}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+sdf\+\_\+test}} = \textquotesingle{}sdf\+\_\+test\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_abc50677452cc6ac58ae59682f307aa07}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+iso\+\_\+test\+\_\+list}} = torch.\+cat(\mbox{\hyperlink{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534}{isov\+\_\+test\+\_\+list}},dim=0)
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_a1e9bc19d72e17725ee47393906fc0a4e}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+iso\+\_\+sdf\+\_\+test}} = \textquotesingle{}iso\+\_\+test\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\end{DoxyCompactItemize}

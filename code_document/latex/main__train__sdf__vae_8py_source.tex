@@ -1,0 +1,170 @@
+\doxysection{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}
+\hypertarget{main__train__sdf__vae_8py_source}{}\label{main__train__sdf__vae_8py_source}\index{src/main\_train\_sdf\_vae.py@{src/main\_train\_sdf\_vae.py}}
+\mbox{\hyperlink{main__train__sdf__vae_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00001}\mbox{\hyperlink{namespacemain__train__sdf__vae}{00001}}\ \textcolor{comment}{\#\ ========public\ pkgs========}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00002}00002\ \textcolor{keyword}{import}\ torch}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00003}00003\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00004}00004\ \textcolor{keyword}{import}\ torch.nn\ \textcolor{keyword}{as}\ nn}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00005}00005\ \textcolor{keyword}{import}\ torch.nn.functional\ \textcolor{keyword}{as}\ F}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00006}00006\ \textcolor{keyword}{from}\ torch.utils.data\ \textcolor{keyword}{import}\ DataLoader}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00007}00007\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00008}00008\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00009}00009\ \textcolor{comment}{\#=========\ private\ pkgs==========================}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00010}00010\ \textcolor{keyword}{from}\ load\_data\ \textcolor{keyword}{import}\ custom\_datasets}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00011}00011\ \textcolor{keyword}{from}\ load\_data\ \textcolor{keyword}{import}\ custom\_transform}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00013}00013\ \textcolor{keyword}{from}\ load\_data\_h5py\ \textcolor{keyword}{import}\ SDFDataset}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00014}00014\ \textcolor{keyword}{from}\ SDF\_VAE\_improved\ \textcolor{keyword}{import}\ SDF\_VAE}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00017}00017\ \textcolor{comment}{\#\ ==================Load\ configuration\ file===============}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00018}00018\ \textcolor{keyword}{with}\ open(\textcolor{stringliteral}{'./config\_SDF\_VAE.json'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00019}\mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{00019}}\ \ \ \ \ config\ =\ json.load(f)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00021}00021\ \textcolor{comment}{\#\ Extract\ configuration\ parameters}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00022}\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{00022}}\ batch\_size\ =\ config[\textcolor{stringliteral}{'model\_params'}][\textcolor{stringliteral}{'batch\_size'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00023}\mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{00023}}\ latent\_dim\ =\ config[\textcolor{stringliteral}{'model\_params'}][\textcolor{stringliteral}{'latent\_dim'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00024}\mbox{\hyperlink{namespacemain__train__sdf__vae_aff79509cba4ad21a42b57be71e19a729}{00024}}\ beta\ =\ config[\textcolor{stringliteral}{'model\_params'}][\textcolor{stringliteral}{'beta'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00025}\mbox{\hyperlink{namespacemain__train__sdf__vae_a55e5a67fc29ff74d31c40e109d22d399}{00025}}\ learning\_rate\ =\ config[\textcolor{stringliteral}{'train\_params'}][\textcolor{stringliteral}{'learning\_rate'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00026}\mbox{\hyperlink{namespacemain__train__sdf__vae_af971a13cfbebc7ff89e7d12fe95a4afe}{00026}}\ epochs\ =\ config[\textcolor{stringliteral}{'train\_params'}][\textcolor{stringliteral}{'epochs'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00027}\mbox{\hyperlink{namespacemain__train__sdf__vae_a9ecafbcdd8c29c2c43315a1feba51441}{00027}}\ manual\_seed\ =\ config[\textcolor{stringliteral}{'random\_seed'}][\textcolor{stringliteral}{'manual\_seed'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00028}\mbox{\hyperlink{namespacemain__train__sdf__vae_ababed1a6b8e88ac368862bc3bfbbec55}{00028}}\ cuda\_manual\_seed\ =\ config[\textcolor{stringliteral}{'random\_seed'}][\textcolor{stringliteral}{'cuda\_manual\_seed'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00029}\mbox{\hyperlink{namespacemain__train__sdf__vae_a6be6b7ce46d5160d499180fafe067baa}{00029}}\ loading\_checkpoint\ =\ config[\textcolor{stringliteral}{'train\_params'}][\textcolor{stringliteral}{'loading\_checkpoint'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00030}00030\ \textcolor{comment}{\#\ Paths\ from\ configuration}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00031}\mbox{\hyperlink{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d}{00031}}\ data\_path\_train\ =\ config[\textcolor{stringliteral}{'Path'}][\textcolor{stringliteral}{'train\_data\_path'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00032}\mbox{\hyperlink{namespacemain__train__sdf__vae_a46823295cf555c0b8da6939b676355bb}{00032}}\ data\_path\_test\ =\ config[\textcolor{stringliteral}{'Path'}][\textcolor{stringliteral}{'test\_data\_path'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00033}\mbox{\hyperlink{namespacemain__train__sdf__vae_af2a5c594df07a846601e78e5b076ef4d}{00033}}\ save\_path\ =\ config[\textcolor{stringliteral}{'Path'}][\textcolor{stringliteral}{'save\_path'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00034}\mbox{\hyperlink{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604}{00034}}\ checkpoint\_path\ =\ config[\textcolor{stringliteral}{'Path'}][\textcolor{stringliteral}{'log\_path'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00037}00037\ \textcolor{comment}{\#\ Set\ random\ seeds\ for\ reproducibility}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00038}00038\ torch.manual\_seed(manual\_seed)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00039}00039\ torch.cuda.manual\_seed(cuda\_manual\_seed)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00040}\mbox{\hyperlink{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3}{00040}}\ sdf\_dimen\ =\ 30}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00041}00041\ \textcolor{comment}{\#\ load\ test\ and\ train\ data}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00042}\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{00042}}\ dataset\_train\ =\ \mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{SDFDataset}}(data\_path\_train)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00043}\mbox{\hyperlink{namespacemain__train__sdf__vae_a3fa26398e18dc38a0ea79e9e3646d16a}{00043}}\ loader\_train\ =\ DataLoader(dataset\_train,\ batch\_size=batch\_size,\ shuffle=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00044}00044\ dataset\_train\ =\ \mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{SDFDataset}}(data\_path\_test)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00045}\mbox{\hyperlink{namespacemain__train__sdf__vae_a583d7c3cb424b7ef60dfa298e96a9c3d}{00045}}\ loader\_test\ =\ DataLoader(dataset\_train,\ batch\_size=batch\_size,\ shuffle=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00046}\mbox{\hyperlink{namespacemain__train__sdf__vae_a21508ee27eea43fa4df1f1c3b57a8b62}{00046}}\ model\ =\ \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e}{SDF\_VAE}}(input\_channels=1,\ latent\_dim=latent\_dim,\ D=sdf\_dimen)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00048}00048\ \textcolor{comment}{\#\ ========Setup\ device\ (GPU/CPU)}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00049}00049\ \textcolor{keywordflow}{if}\ torch.cuda.is\_available():\ \textcolor{comment}{\#\ GPU\ is\ available}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00050}00050\ \ \ \ \ print(\textcolor{stringliteral}{'GPU\ is\ available'})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{if}\ torch.cuda.device\_count()\ >\ 1:}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ model\ =\ nn.DataParallel(model)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ print(str(torch.cuda.device\_count()),\textcolor{stringliteral}{'GPUS\ are\ available'})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00054}\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{00054}}\ \ \ \ \ device\ =\ torch.device(\textcolor{stringliteral}{"{}cuda:0"{}})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00055}\mbox{\hyperlink{namespacemain__train__sdf__vae_af34885763f6a530ef7a63850a4ee7e64}{00055}}\ \ \ \ \ GPU\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00056}00056\ \ \ \ \ model.to(device)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00057}00057\ \textcolor{keywordflow}{else}:\ \ \textcolor{comment}{\#\ only\ cpu\ is\ available}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00058}00058\ \ \ \ \ print(\textcolor{stringliteral}{'CPU\ is\ only\ available'})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00059}00059\ \ \ \ \ GPU\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00060}00060\ \ \ \ \ device\ =\ torch.device(\textcolor{stringliteral}{"{}cpu"{}})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00061}00061\ \ \ \ \ model.to(device)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00063}\mbox{\hyperlink{namespacemain__train__sdf__vae_ad95d6d0c738adf945cc174e6cb32cd41}{00063}}\ optimizer\ =\ torch.optim.Adam(}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00064}00064\ \ \ \ \ model.parameters(),}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00065}00065\ \ \ \ \ lr=learning\_rate,}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00066}00066\ )}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00069}00069\ \textcolor{comment}{\#\ Define\ the\ loss\ function}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00070}\mbox{\hyperlink{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c}{00070}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c}{lossfunc}}(sdf,sdf\_hat,iso,iso\_hat,mu,logvar,beta):}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00071}00071\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00072}00072\ \textcolor{stringliteral}{\ \ \ \ Computes\ the\ Variational\ Autoencoder\ (VAE)\ loss\ function,\ combining\ reconstruction\ loss\ and\ KL\ divergence.}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00073}00073\ \textcolor{stringliteral}{\ \ \ \ Args}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00074}00074\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00075}00075\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ torch.Tensor:\ The\ computed\ loss\ value.}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00076}00076\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00077}00077\ \ \ \ \ sdf\_loss\ =\ F.mse\_loss(sdf\_hat,\ sdf,reduction\ =\ \textcolor{stringliteral}{'sum'})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00078}00078\ \ \ \ \ iso\_loss\ =\ F.mse\_loss(iso\_hat,\ iso,reduction\ =\ \textcolor{stringliteral}{'sum'})*40**3}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00079}00079\ \ \ \ \ \textcolor{comment}{\#\ iso\_loss\ =\ F.mse\_loss(iso\_hat,\ iso,reduction\ =\ 'sum')*30**3\ \#\ for\ another\ case}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00080}00080\ \ \ \ \ recons\_loss\ =\ sdf\_loss+\ iso\_loss}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00081}00081\ \ \ \ \ kl\_loss\ =\ -\/0.5\ *\ torch.sum(1\ +\ logvar\ -\/\ mu.pow(2)\ -\/\ logvar.exp())}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00082}00082\ \ \ \ \ \textcolor{comment}{\#\ kl\_loss\ =\ torch.mean(-\/0.5\ *\ torch.sum(1\ +\ logvar\ -\/\ mu.pow(2)\ -\/\ logvar.exp(),\ dim\ =\ 1),\ dim\ =\ 0)}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{return}\ recons\_loss\ +\ beta*\ kl\_loss}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00086}00086\ \textcolor{comment}{\#\ Load\ checkpoint\ if\ specified}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00087}00087\ \textcolor{keywordflow}{if}\ loading\_checkpoint:}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00088}\mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{00088}}\ \ \ \ \ checkpoint\ =\ torch.load(checkpoint\_path+\textcolor{stringliteral}{'checkpoint.tar'})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00089}00089\ \ \ \ \ model.load\_state\_dict(checkpoint[\textcolor{stringliteral}{'model\_state\_dict'}])}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00090}00090\ \ \ \ \ optimizer.load\_state\_dict(checkpoint[\textcolor{stringliteral}{'optimizer\_state\_dict'}])}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00091}\mbox{\hyperlink{namespacemain__train__sdf__vae_a3dbfd8edf7e8e094bdd87446604f5cd8}{00091}}\ \ \ \ \ current\_epoch\ =\ checkpoint[\textcolor{stringliteral}{'epoch'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00092}\mbox{\hyperlink{namespacemain__train__sdf__vae_ab7c0e4d61b96e7f3fc88e0e8616d6b5e}{00092}}\ \ \ \ \ loss\ =\ checkpoint[\textcolor{stringliteral}{'loss'}]}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00093}00093\ \textcolor{keywordflow}{else}:\ \textcolor{comment}{\#\ use\ the\ initial\ model\ and\ optimiser}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00094}00094\ \ \ \ \ current\_epoch\ =\ 0}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00095}00095\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00096}00096\ \textcolor{keywordflow}{for}\ epoch\ \textcolor{keywordflow}{in}\ range(current\_epoch,\ epochs+1):}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00097}00097\ \ \ \ \ model.train()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00099}\mbox{\hyperlink{namespacemain__train__sdf__vae_acf1caf3d9a32525fff91a3547811585c}{00099}}\ \ \ \ \ mu\_list\ =\ list()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00100}\mbox{\hyperlink{namespacemain__train__sdf__vae_a81e0b08960d68e2864b9f16dbcc6415f}{00100}}\ \ \ \ \ sdf\_test\_list\ =\ list()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00101}\mbox{\hyperlink{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534}{00101}}\ \ \ \ \ isov\_test\_list\ =\ list()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00102}00102\ \ \ \ \ model.train()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00103}\mbox{\hyperlink{namespacemain__train__sdf__vae_a66ee3538a50260ce3264150d619c18bb}{00103}}\ \ \ \ \ train\_loss\ =\ 0}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{for}\ sdf\_data,\ isovalues\ \textcolor{keywordflow}{in}\ loader\_train:}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00105}\mbox{\hyperlink{namespacemain__train__sdf__vae_a53e33e0f261bcd0db416919c277cefd4}{00105}}\ \ \ \ \ \ \ \ \ sdf\_data\ =\ sdf\_data.to(device)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00106}\mbox{\hyperlink{namespacemain__train__sdf__vae_af4d5f1c6f5d489e829c9e23b2fb1faef}{00106}}\ \ \ \ \ \ \ \ \ isovalues\ =\ isovalues.to(device)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00107}\mbox{\hyperlink{namespacemain__train__sdf__vae_a192b11735b5f58039e3a0f4b4da3aa86}{00107}}\ \ \ \ \ \ \ \ \ sdf\_hat,iso\_hat,mu,logvar\ =\ \mbox{\hyperlink{namespacemain__train__sdf__vae_a21508ee27eea43fa4df1f1c3b57a8b62}{model}}(sdf\_data,isovalues)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ mu\_list.append(mu.detach())\ \textcolor{comment}{\#\ save\ latent\ vector}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#====\ forwad\ pass}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ loss\ =\ \mbox{\hyperlink{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c}{lossfunc}}(sdf\_data,sdf\_hat,isovalues,iso\_hat,mu,logvar,beta)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ train\_loss\ +=\ loss.item()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#====\ backward\ pass}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ optimizer.zero\_grad()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ loss.backward()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ optimizer.step()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#===\ save\ model\ }}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{if}\ (epoch)\ \%\ 4\ ==\ 0:\ \textcolor{comment}{\#\ save\ model\ every\ 40\ steps}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ mu\_list\ =\ torch.cat(mu\_list,dim=0)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00119}\mbox{\hyperlink{namespacemain__train__sdf__vae_ae7056d51e0e394c73ff3f7c23f30d62f}{00119}}\ \ \ \ \ \ \ \ \ save\_model\ =\ \textcolor{stringliteral}{'VAEmodel\_'}+str(epoch)\ +\ \textcolor{stringliteral}{'.pt'}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ if\ GPU:}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ torch.save(model.module.state\_dict(),\ save\_path+save\_model)\ \#\ save\ module\ on\ GPU}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ else:}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ torch.save(model.state\_dict(),\ save\_path+save\_model)\ \textcolor{comment}{\#\ save\ model\ on\ CPU\ }}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00126}\mbox{\hyperlink{namespacemain__train__sdf__vae_a3566212d6ab7ef421a82beedd87ee7f1}{00126}}\ \ \ \ \ \ \ \ \ save\_mu\ =\ \textcolor{stringliteral}{'mu\_list\_'}+str(epoch)\ +\ \textcolor{stringliteral}{'.pt'}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ torch.save(mu\_list,\ save\_path+save\_mu)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ =====\ checke\ the\ loss\ function\ on\ test\ dataset}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ torch.no\_grad():}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ model.eval()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00131}\mbox{\hyperlink{namespacemain__train__sdf__vae_a8535eca40025c2afcbc2402ee4cf0029}{00131}}\ \ \ \ \ \ \ \ \ \ \ \ \ mu\_list\_test\ =\ list()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00132}\mbox{\hyperlink{namespacemain__train__sdf__vae_a2cf92e104349d90af939e839f8c61d64}{00132}}\ \ \ \ \ \ \ \ \ \ \ \ \ test\_loss\ =\ 0}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ sdf\_data,\ isovalues\ \textcolor{keywordflow}{in}\ loader\_test:}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sdf\_data\ =\ sdf\_data.to(device)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isovalues\ =\ isovalues.to(device)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sdf\_hat,iso\_hat,mu,logvar\ =\ \mbox{\hyperlink{namespacemain__train__sdf__vae_a21508ee27eea43fa4df1f1c3b57a8b62}{model}}(sdf\_data,isovalues)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loss\ =\ \mbox{\hyperlink{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c}{lossfunc}}(sdf\_data,sdf\_hat,isovalues,iso\_hat,mu,logvar,beta)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ test\_loss\ +=\ loss.item()}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mu\_list\_test.append(mu.detach())}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sdf\_test\_list.append(sdf\_data.detach())}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isov\_test\_list.append(isovalues.detach())}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ mu\_list\_test\ =\ torch.cat(mu\_list\_test,dim=0)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ save\_mu\ =\ \textcolor{stringliteral}{'mu\_list\_test\_'}+str(epoch)\ +\ \textcolor{stringliteral}{'.pt'}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ torch.save(mu\_list\_test,\ save\_path+save\_mu)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ sdf\_test\_list\ =\ torch.cat(sdf\_test\_list,dim=0)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00147}\mbox{\hyperlink{namespacemain__train__sdf__vae_a9122645b490b172db17b153509d71fd7}{00147}}\ \ \ \ \ \ \ \ \ \ \ \ \ save\_sdf\_test\ =\ \textcolor{stringliteral}{'sdf\_test\_'}+str(epoch)\ +\ \textcolor{stringliteral}{'.pt'}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00149}\mbox{\hyperlink{namespacemain__train__sdf__vae_abc50677452cc6ac58ae59682f307aa07}{00149}}\ \ \ \ \ \ \ \ \ \ \ \ \ iso\_test\_list\ =\ torch.cat(isov\_test\_list,dim=0)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00150}\mbox{\hyperlink{namespacemain__train__sdf__vae_a1e9bc19d72e17725ee47393906fc0a4e}{00150}}\ \ \ \ \ \ \ \ \ \ \ \ \ iso\_sdf\_test\ =\ \textcolor{stringliteral}{'iso\_test\_'}+str(epoch)\ +\ \textcolor{stringliteral}{'.pt'}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ torch.save(iso\_test\_list,\ save\_path+iso\_sdf\_test)}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00155}00155\ \ \ \ \ print(f\textcolor{stringliteral}{'====>\ Epoch:\ \{epoch\}\ Average\ loss:\{train\_loss/len(loader\_train.dataset):.4f\}'})}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00158}00158\ \ \ \ \ \textcolor{comment}{\#\%\%\ save\ checkpoint}}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00159}00159\ torch.save(\{}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'epoch'}:\ epoch,}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'model\_state\_dict'}:\ model.module.state\_dict(),}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'optimizer\_state\_dict'}:\ optimizer.state\_dict(),}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'loss'}:\ loss,}
+\DoxyCodeLine{\Hypertarget{main__train__sdf__vae_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \},\ checkpoint\_path+\textcolor{stringliteral}{'checkpoint.tar'})}
+
+\end{DoxyCode}

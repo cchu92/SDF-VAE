@@ -1,0 +1,99 @@
+\doxysection{SDF\+\_\+\+VAE\+\_\+improved.\+SDF\+\_\+\+VAE Class Reference}
+\hypertarget{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e}{}\label{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e}\index{SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}}
+
+
+Inheritance diagram for SDF\+\_\+\+VAE\+\_\+improved.\+SDF\+\_\+\+VAE\+:
+% FIG 0
+
+
+Collaboration diagram for SDF\+\_\+\+VAE\+\_\+improved.\+SDF\+\_\+\+VAE\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_aff90298c0d7dfcfb8b7f099411e9224e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int input\+\_\+channels, int latent\+\_\+dim, int D, list hidden\+\_\+layers=None)
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a54023e654ae23d6941d4ce7c2d6cffb0}{forward}} (self, sdf, iso)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a46db050d0c41a1081975c2e36737f2bb}{encoder}}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a42eb0e784d9c22e49a9ac4b4d2c828b4}{decoder}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00162}{162}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_aff90298c0d7dfcfb8b7f099411e9224e}\label{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_aff90298c0d7dfcfb8b7f099411e9224e} 
+\index{SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+SDF\+\_\+\+VAE.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{input\+\_\+channels,  }\item[{int}]{latent\+\_\+dim,  }\item[{int}]{D,  }\item[{list}]{hidden\+\_\+layers = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00163}{163}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a54023e654ae23d6941d4ce7c2d6cffb0}\label{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a54023e654ae23d6941d4ce7c2d6cffb0} 
+\index{SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}!forward@{forward}}
+\index{forward@{forward}!SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+SDF\+\_\+\+VAE.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sdf,  }\item[{}]{iso }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} Ouputs of Deocder and Encoders
+    Arg:
+    sdf: input 'sdf' 
+    iso: input 'isovalue' 
+    Return:
+    sdf_decoded: reconstruct  'sdf' 
+    iso_decoded: reconstruct  isovalue
+    mu: mean
+    log_var: std, noise to mean
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00180}{180}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a42eb0e784d9c22e49a9ac4b4d2c828b4}\label{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a42eb0e784d9c22e49a9ac4b4d2c828b4} 
+\index{SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}!decoder@{decoder}}
+\index{decoder@{decoder}!SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}}
+\doxysubsubsection{\texorpdfstring{decoder}{decoder}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+SDF\+\_\+\+VAE.\+decoder}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00175}{175}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a46db050d0c41a1081975c2e36737f2bb}\label{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e_a46db050d0c41a1081975c2e36737f2bb} 
+\index{SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}!encoder@{encoder}}
+\index{encoder@{encoder}!SDF\_VAE\_improved.SDF\_VAE@{SDF\_VAE\_improved.SDF\_VAE}}
+\doxysubsubsection{\texorpdfstring{encoder}{encoder}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+SDF\+\_\+\+VAE.\+encoder}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00172}{172}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_s_d_f___v_a_e__improved_8py}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}\end{DoxyCompactItemize}

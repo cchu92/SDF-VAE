@@ -1,0 +1,57 @@
+\doxysection{load\+\_\+data\+\_\+h5py.\+py}
+\hypertarget{load__data__h5py_8py_source}{}\label{load__data__h5py_8py_source}\index{src/load\_data\_h5py.py@{src/load\_data\_h5py.py}}
+\mbox{\hyperlink{load__data__h5py_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00001}\mbox{\hyperlink{namespaceload__data__h5py}{00001}}\ \textcolor{keyword}{import}\ h5py}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00002}00002\ \textcolor{keyword}{import}\ torch}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00003}00003\ \textcolor{keyword}{from}\ torch.utils.data\ \textcolor{keyword}{import}\ Dataset}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00004}00004\ \textcolor{comment}{\#\ from\ torch.utils.data\ import\ DataLoader}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00007}\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{00007}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{SDFDataset}}(Dataset):}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00008}\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_aeb807c4fcbaaa6af6433a921143fff16}{00008}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_aeb807c4fcbaaa6af6433a921143fff16}{\_\_init\_\_}}(self,\ hdf5\_file):}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Loading\ the\ SDF\ data\ and\ isovalues\ directly\ here\ could\ be\ inefficient\ if\ they\ are\ large.}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Instead,\ just\ open\ and\ store\ the\ file\ handle,\ or\ path,\ and\ load\ individual\ items\ in\ \_\_getitem\_\_.}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00011}\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a4084f50ade38497188614228bfd34aed}{00011}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a4084f50ade38497188614228bfd34aed}{hdf5\_file}}\ =\ hdf5\_file}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ h5py.File(self.\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a4084f50ade38497188614228bfd34aed}{hdf5\_file}},\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ file:}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00013}\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a2a1d2bba614247a5105d770aff29b534}{00013}}\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a2a1d2bba614247a5105d770aff29b534}{length}}\ =\ file[\textcolor{stringliteral}{'sdfs'}].shape[0]}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00014}00014\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00015}\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_ae8a083807d9458ea541990b377cd32c9}{00015}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_ae8a083807d9458ea541990b377cd32c9}{\_\_len\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a2a1d2bba614247a5105d770aff29b534}{length}}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00017}00017\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00018}\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a0a3ee6f2ca8dbcb2486b45d826975d02}{00018}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a0a3ee6f2ca8dbcb2486b45d826975d02}{normalize\_tensor}}(self,\ x,iso):}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Normalize\ tensor\ to\ range\ [-\/1,\ 1]}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00020}00020\ \ \ \ \ \ \ \ \ x\_min\ =\ x.min()}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00021}00021\ \ \ \ \ \ \ \ \ x\_max\ =\ x.max()}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00022}00022\ \ \ \ \ \ \ \ \ x\_norm\ =\ \ ((x\ -\/\ x\_min)\ /\ (x\_max\ -\/\ x\_min))\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00023}00023\ \ \ \ \ \ \ \ \ iso\_norm\ =\ \ ((iso\ -\/\ x\_min)\ /\ (x\_max\ -\/\ x\_min))\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x\_norm,iso\_norm}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00026}\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a6738f163a87783f05d992c9726f19d17}{00026}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a6738f163a87783f05d992c9726f19d17}{\_\_getitem\_\_}}(self,\ idx):}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ h5py.File(self.\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a4084f50ade38497188614228bfd34aed}{hdf5\_file}},\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ file:}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ \ SDFs\ are\ stored\ under\ 'sdfs'\ and\ isovalues\ under\ 'isovalues'}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ sdf\ =\ file[\textcolor{stringliteral}{'sdfs'}][idx]}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ isovalue\ =\ file[\textcolor{stringliteral}{'isovalues'}][idx]}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Normalize\ the\ SDF}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ sdf\_tensor\ =\ torch.tensor(sdf,\ dtype=torch.float)}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ isovalue\_tensor\ =\ torch.tensor(isovalue,\ dtype=torch.float)}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ sdf\_normalized,isovalue\_normalized\ =\ self.\mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset_a0a3ee6f2ca8dbcb2486b45d826975d02}{normalize\_tensor}}(sdf\_tensor,\ isovalue\_tensor)}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sdf\_normalized,\ isovalue\_normalized}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00039}\mbox{\hyperlink{namespaceload__data__h5py_a26aad0566bbab782e2bb635d29a1ac5c}{00039}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespaceload__data__h5py_a26aad0566bbab782e2bb635d29a1ac5c}{test\_dataset}}():}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00040}00040\ \ \ \ \ dataset\ =\ \mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{SDFDataset}}(\textcolor{stringliteral}{'sdf\_dataset.h5'})}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00041}00041\ \ \ \ \ sdf\_normalized,\ isovalue\_normalized\ =\ dataset[0]}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00043}00043\ \ \ \ \ \textcolor{comment}{\#\ Check\ the\ range\ of\ values\ in\ the\ retrieved\ SDF}}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00044}00044\ \ \ \ \ sdf\_min\ =\ sdf\_normalized.min().item()}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00045}00045\ \ \ \ \ sdf\_max\ =\ sdf\_normalized.max().item()}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00047}00047\ \ \ \ \ print(\textcolor{stringliteral}{"{}Min\ value\ in\ the\ normalized\ SDF:"{}},\ sdf\_min)}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00048}00048\ \ \ \ \ print(\textcolor{stringliteral}{"{}Max\ value\ in\ the\ normalized\ SDF:"{}},\ sdf\_max)}
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{return}\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{load__data__h5py_8py_source_l00051}00051\ \textcolor{comment}{\#\ test\_dataset()}}
+
+\end{DoxyCode}

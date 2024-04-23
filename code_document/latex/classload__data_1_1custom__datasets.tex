@@ -1,0 +1,165 @@
+\doxysection{load\+\_\+data.\+custom\+\_\+datasets Class Reference}
+\hypertarget{classload__data_1_1custom__datasets}{}\label{classload__data_1_1custom__datasets}\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+
+
+Inheritance diagram for load\+\_\+data.\+custom\+\_\+datasets\+:
+% FIG 0
+
+
+Collaboration diagram for load\+\_\+data.\+custom\+\_\+datasets\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_a5acc5112e0e1c4257ec0a070290dad1a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, data\+\_\+path, \mbox{\hyperlink{classload__data_1_1custom__datasets_a0a1238afd501cecc6e74d275b7a3a365}{transform}}=None, \mbox{\hyperlink{classload__data_1_1custom__datasets_a8e7a4e8dd9e309bca8e6d7fcb6147bd0}{flatten}}=False)
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_a2d22823af8d287a97ebb647e5be34e69}{\+\_\+\+\_\+len\+\_\+\+\_\+}} (self)
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_a7c40d309cf427b21f69822761299b7a9}{\+\_\+\+\_\+getitem\+\_\+\+\_\+}} (self, idx)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_a65118a7b7bc1e713b735b46184ae078f}{data}}
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_ad4317109ae5f4a4b228a1a20fbfa9528}{channels}}
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_a2447ba780b26aa3d01ba4165c4c26304}{dim}}
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_a0a1238afd501cecc6e74d275b7a3a365}{transform}}
+\item 
+\mbox{\hyperlink{classload__data_1_1custom__datasets_a8e7a4e8dd9e309bca8e6d7fcb6147bd0}{flatten}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Custom dataset for organizing and transforming datasets for PyTorch.
+
+This dataset class is designed to load data from a specified file path, optionally apply a transformation to the data,
+and support flattening the data for use with fully connected neural network layers.
+
+Attributes:
+    data (numpy.ndarray): The dataset loaded from the specified path, limited to the first two channels.
+    channels (int): The number of channels in the dataset.
+    dim (int): The dimension of the images (assumed square).
+    transform (callable, optional): A function/transform that takes in a sample and returns a transformed version.
+    flatten (bool): Whether to flatten the data for use with fully connected layers.
+
+Args:
+    data_path (str): The file path to the dataset, expected to be a .npy file.
+    transform (callable, optional): Optional transform to apply to each sample.
+    flatten (bool): If True, flattens the data for use with fully connected layers. Default is False.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00031}{31}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classload__data_1_1custom__datasets_a5acc5112e0e1c4257ec0a070290dad1a}\label{classload__data_1_1custom__datasets_a5acc5112e0e1c4257ec0a070290dad1a} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data\+\_\+path,  }\item[{}]{transform = {\ttfamily None},  }\item[{}]{flatten = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Args: loading the dataset 
+    data_path: path to the data, and  size should be [N*C*D*D*D]
+        N: number of images
+        C: number of channels (gray scale = 1, RGB = 3,for this sdf =1)
+        D: dimsion of the sdf, D^3
+    transform: transform the data, default is None
+    flatten:  flatten is used  only for a flatten NN layer, default is False
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00050}{50}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classload__data_1_1custom__datasets_a7c40d309cf427b21f69822761299b7a9}\label{classload__data_1_1custom__datasets_a7c40d309cf427b21f69822761299b7a9} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!\_\_getitem\_\_@{\_\_getitem\_\_}}
+\index{\_\_getitem\_\_@{\_\_getitem\_\_}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{\_\_getitem\_\_()}{\_\_getitem\_\_()}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+\_\+\+\_\+getitem\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{idx }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Thix function will  used for torch.utils.data.DataLoader
+Args: 
+    idx: a list, size of batch_size, random choose the index of the data
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00075}{75}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+\Hypertarget{classload__data_1_1custom__datasets_a2d22823af8d287a97ebb647e5be34e69}\label{classload__data_1_1custom__datasets_a2d22823af8d287a97ebb647e5be34e69} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!\_\_len\_\_@{\_\_len\_\_}}
+\index{\_\_len\_\_@{\_\_len\_\_}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{\_\_len\_\_()}{\_\_len\_\_()}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+\_\+\+\_\+len\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Args: return the size of data
+this function will  used for torch.utils.data.DataLoader
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00069}{69}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classload__data_1_1custom__datasets_ad4317109ae5f4a4b228a1a20fbfa9528}\label{classload__data_1_1custom__datasets_ad4317109ae5f4a4b228a1a20fbfa9528} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!channels@{channels}}
+\index{channels@{channels}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{channels}{channels}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+channels}
+
+
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00064}{64}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+\Hypertarget{classload__data_1_1custom__datasets_a65118a7b7bc1e713b735b46184ae078f}\label{classload__data_1_1custom__datasets_a65118a7b7bc1e713b735b46184ae078f} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!data@{data}}
+\index{data@{data}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+data}
+
+
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00063}{63}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+\Hypertarget{classload__data_1_1custom__datasets_a2447ba780b26aa3d01ba4165c4c26304}\label{classload__data_1_1custom__datasets_a2447ba780b26aa3d01ba4165c4c26304} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!dim@{dim}}
+\index{dim@{dim}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{dim}{dim}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+dim}
+
+
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00066}{66}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+\Hypertarget{classload__data_1_1custom__datasets_a8e7a4e8dd9e309bca8e6d7fcb6147bd0}\label{classload__data_1_1custom__datasets_a8e7a4e8dd9e309bca8e6d7fcb6147bd0} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!flatten@{flatten}}
+\index{flatten@{flatten}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{flatten}{flatten}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+flatten}
+
+
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00068}{68}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+\Hypertarget{classload__data_1_1custom__datasets_a0a1238afd501cecc6e74d275b7a3a365}\label{classload__data_1_1custom__datasets_a0a1238afd501cecc6e74d275b7a3a365} 
+\index{load\_data.custom\_datasets@{load\_data.custom\_datasets}!transform@{transform}}
+\index{transform@{transform}!load\_data.custom\_datasets@{load\_data.custom\_datasets}}
+\doxysubsubsection{\texorpdfstring{transform}{transform}}
+{\footnotesize\ttfamily load\+\_\+data.\+custom\+\_\+datasets.\+transform}
+
+
+
+Definition at line \mbox{\hyperlink{load__data_8py_source_l00067}{67}} of file \mbox{\hyperlink{load__data_8py_source}{load\+\_\+data.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{load__data_8py}{load\+\_\+data.\+py}}\end{DoxyCompactItemize}

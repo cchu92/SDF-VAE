@@ -1,0 +1,14 @@
+{
+    "path":{
+        "path_of_npy":"data/main_of_file_name",
+        "path_to_train_data":"data/path/to/train/data",
+        "path_to_test_data":"data/path/to/test/data"
+    },
+    "varible": {
+        "cell_resolution":50,
+        "Number_of_cell":6000,
+        "test_size":0.3
+    }
+
+
+}

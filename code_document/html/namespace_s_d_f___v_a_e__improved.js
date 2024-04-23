@@ -1,0 +1,6 @@
+var namespace_s_d_f___v_a_e__improved =
+[
+    [ "Decoder", "class_s_d_f___v_a_e__improved_1_1_decoder.html", "class_s_d_f___v_a_e__improved_1_1_decoder" ],
+    [ "Encoder", "class_s_d_f___v_a_e__improved_1_1_encoder.html", "class_s_d_f___v_a_e__improved_1_1_encoder" ],
+    [ "SDF_VAE", "class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e.html", "class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e" ]
+];

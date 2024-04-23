@@ -1,0 +1,202 @@
+\doxysection{SDF\+\_\+\+VAE\+\_\+improved.\+Decoder Class Reference}
+\hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder}{}\label{class_s_d_f___v_a_e__improved_1_1_decoder}\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+
+
+Inheritance diagram for SDF\+\_\+\+VAE\+\_\+improved.\+Decoder\+:
+% FIG 0
+
+
+Collaboration diagram for SDF\+\_\+\+VAE\+\_\+improved.\+Decoder\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a6dcb8930658f4ec64ef747341bf96f71}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int latent\+\_\+dim, int D, int input\+\_\+channels, list \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a42baba72c3b8e9e8292471c77eb6257a}{hidden\+\_\+layers}}=None)
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a45fb72cdecc2fa9834a2aa8aedf48472}{forward}} (self, z)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a42baba72c3b8e9e8292471c77eb6257a}{hidden\+\_\+layers}}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a49c1c17dea84626de553de93eacea088}{zd\+\_\+iso}}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_aed0ca986cf014affdbf3e71118e9dae9}{zd\+\_\+sdf}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a9a380276257f5841284229f0aa2648bf}{N\+\_\+}}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a42405799356efb03e31f36fbacd40aab}{decoder\+\_\+sdf\+\_\+first\+\_\+layer}}
+\item 
+list \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a28d23bcf246a178bf22802f44d4d4e77}{modules}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a2f7de0691adb1cba7d02cd52ddd0205b}{firt\+\_\+hidden}} = \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a42baba72c3b8e9e8292471c77eb6257a}{hidden\+\_\+layers}}\mbox{[}0\mbox{]}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a25694721f4a46144338e6c8f4780cbb2}{decoder\+\_\+sdf}}
+\item 
+int \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_acb09f052187164c5424cb5085a8bb875}{adjt\+\_\+kernel}} = 22+19
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_ad5111a7e70e208440a69e525de5d8b42}{final\+\_\+layer}}
+\item 
+\mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_af25bacd4157c6bd96d2c50bc327447d6}{decoder\+\_\+iso}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00095}{95}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a6dcb8930658f4ec64ef747341bf96f71}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a6dcb8930658f4ec64ef747341bf96f71} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{latent\+\_\+dim,  }\item[{int}]{D,  }\item[{int}]{input\+\_\+channels,  }\item[{list }]{hidden\+\_\+layers = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00096}{96}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a45fb72cdecc2fa9834a2aa8aedf48472}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a45fb72cdecc2fa9834a2aa8aedf48472} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!forward@{forward}}
+\index{forward@{forward}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{z }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decoder strucure
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00140}{140}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_acb09f052187164c5424cb5085a8bb875}\label{class_s_d_f___v_a_e__improved_1_1_decoder_acb09f052187164c5424cb5085a8bb875} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!adjt\_kernel@{adjt\_kernel}}
+\index{adjt\_kernel@{adjt\_kernel}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{adjt\_kernel}{adjt\_kernel}}
+{\footnotesize\ttfamily int SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+adjt\+\_\+kernel = 22+19\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00123}{123}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_af25bacd4157c6bd96d2c50bc327447d6}\label{class_s_d_f___v_a_e__improved_1_1_decoder_af25bacd4157c6bd96d2c50bc327447d6} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!decoder\_iso@{decoder\_iso}}
+\index{decoder\_iso@{decoder\_iso}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{decoder\_iso}{decoder\_iso}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+decoder\+\_\+iso\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00131}{131}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a25694721f4a46144338e6c8f4780cbb2}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a25694721f4a46144338e6c8f4780cbb2} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!decoder\_sdf@{decoder\_sdf}}
+\index{decoder\_sdf@{decoder\_sdf}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{decoder\_sdf}{decoder\_sdf}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+decoder\+\_\+sdf\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00122}{122}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a42405799356efb03e31f36fbacd40aab}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a42405799356efb03e31f36fbacd40aab} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!decoder\_sdf\_first\_layer@{decoder\_sdf\_first\_layer}}
+\index{decoder\_sdf\_first\_layer@{decoder\_sdf\_first\_layer}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{decoder\_sdf\_first\_layer}{decoder\_sdf\_first\_layer}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+decoder\+\_\+sdf\+\_\+first\+\_\+layer\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00110}{110}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_ad5111a7e70e208440a69e525de5d8b42}\label{class_s_d_f___v_a_e__improved_1_1_decoder_ad5111a7e70e208440a69e525de5d8b42} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!final\_layer@{final\_layer}}
+\index{final\_layer@{final\_layer}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{final\_layer}{final\_layer}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+final\+\_\+layer\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00125}{125}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a2f7de0691adb1cba7d02cd52ddd0205b}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a2f7de0691adb1cba7d02cd52ddd0205b} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!firt\_hidden@{firt\_hidden}}
+\index{firt\_hidden@{firt\_hidden}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{firt\_hidden}{firt\_hidden}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+firt\+\_\+hidden = \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_decoder_a42baba72c3b8e9e8292471c77eb6257a}{hidden\+\_\+layers}}\mbox{[}0\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00112}{112}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a42baba72c3b8e9e8292471c77eb6257a}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a42baba72c3b8e9e8292471c77eb6257a} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!hidden\_layers@{hidden\_layers}}
+\index{hidden\_layers@{hidden\_layers}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{hidden\_layers}{hidden\_layers}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+hidden\+\_\+layers}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00104}{104}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a28d23bcf246a178bf22802f44d4d4e77}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a28d23bcf246a178bf22802f44d4d4e77} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!modules@{modules}}
+\index{modules@{modules}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{modules}{modules}}
+{\footnotesize\ttfamily list SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+modules = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00111}{111}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a9a380276257f5841284229f0aa2648bf}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a9a380276257f5841284229f0aa2648bf} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!N\_@{N\_}}
+\index{N\_@{N\_}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{N\_}{N\_}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+N\+\_\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00109}{109}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_a49c1c17dea84626de553de93eacea088}\label{class_s_d_f___v_a_e__improved_1_1_decoder_a49c1c17dea84626de553de93eacea088} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!zd\_iso@{zd\_iso}}
+\index{zd\_iso@{zd\_iso}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{zd\_iso}{zd\_iso}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+zd\+\_\+iso}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00106}{106}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+\Hypertarget{class_s_d_f___v_a_e__improved_1_1_decoder_aed0ca986cf014affdbf3e71118e9dae9}\label{class_s_d_f___v_a_e__improved_1_1_decoder_aed0ca986cf014affdbf3e71118e9dae9} 
+\index{SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}!zd\_sdf@{zd\_sdf}}
+\index{zd\_sdf@{zd\_sdf}!SDF\_VAE\_improved.Decoder@{SDF\_VAE\_improved.Decoder}}
+\doxysubsubsection{\texorpdfstring{zd\_sdf}{zd\_sdf}}
+{\footnotesize\ttfamily SDF\+\_\+\+VAE\+\_\+improved.\+Decoder.\+zd\+\_\+sdf}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source_l00107}{107}} of file \mbox{\hyperlink{_s_d_f___v_a_e__improved_8py_source}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_s_d_f___v_a_e__improved_8py}{SDF\+\_\+\+VAE\+\_\+improved.\+py}}\end{DoxyCompactItemize}

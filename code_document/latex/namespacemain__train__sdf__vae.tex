@@ -1,0 +1,531 @@
+\doxysection{main\+\_\+train\+\_\+sdf\+\_\+vae Namespace Reference}
+\hypertarget{namespacemain__train__sdf__vae}{}\label{namespacemain__train__sdf__vae}\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c}{lossfunc}} (sdf, \mbox{\hyperlink{namespacemain__train__sdf__vae_aa5892a78f475e930c8f89ea7f4bb0b33}{sdf\+\_\+hat}}, iso, \mbox{\hyperlink{namespacemain__train__sdf__vae_a192b11735b5f58039e3a0f4b4da3aa86}{iso\+\_\+hat}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a86eb619450695f4c6d1d3de3f3047c32}{mu}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a758b22a4984b8c228413096d7962d567}{logvar}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_aff79509cba4ad21a42b57be71e19a729}{beta}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}} = json.\+load(f)
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}batch\+\_\+size\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{latent\+\_\+dim}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}latent\+\_\+dim\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aff79509cba4ad21a42b57be71e19a729}{beta}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}beta\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a55e5a67fc29ff74d31c40e109d22d399}{learning\+\_\+rate}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}learning\+\_\+rate\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_af971a13cfbebc7ff89e7d12fe95a4afe}{epochs}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}epochs\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a9ecafbcdd8c29c2c43315a1feba51441}{manual\+\_\+seed}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}random\+\_\+seed\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}manual\+\_\+seed\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ababed1a6b8e88ac368862bc3bfbbec55}{cuda\+\_\+manual\+\_\+seed}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}random\+\_\+seed\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}cuda\+\_\+manual\+\_\+seed\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a6be6b7ce46d5160d499180fafe067baa}{loading\+\_\+checkpoint}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}loading\+\_\+checkpoint\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d}{data\+\_\+path\+\_\+train}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}train\+\_\+data\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a46823295cf555c0b8da6939b676355bb}{data\+\_\+path\+\_\+test}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}test\+\_\+data\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_af2a5c594df07a846601e78e5b076ef4d}{save\+\_\+path}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}save\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604}{checkpoint\+\_\+path}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}log\+\_\+path\textquotesingle{}\mbox{]}
+\item 
+int \mbox{\hyperlink{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3}{sdf\+\_\+dimen}} = 30
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{dataset\+\_\+train}} = \mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{SDFDataset}}(\mbox{\hyperlink{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d}{data\+\_\+path\+\_\+train}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a3fa26398e18dc38a0ea79e9e3646d16a}{loader\+\_\+train}} = Data\+Loader(\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{dataset\+\_\+train}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}, shuffle=True)
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a583d7c3cb424b7ef60dfa298e96a9c3d}{loader\+\_\+test}} = Data\+Loader(\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{dataset\+\_\+train}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}, shuffle=True)
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a21508ee27eea43fa4df1f1c3b57a8b62}{model}} = \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e}{SDF\+\_\+\+VAE}}(input\+\_\+channels=1, \mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{latent\+\_\+dim}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{latent\+\_\+dim}}, D=\mbox{\hyperlink{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3}{sdf\+\_\+dimen}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{device}} = torch.\+device("{}cuda\+:0"{})
+\item 
+bool \mbox{\hyperlink{namespacemain__train__sdf__vae_af34885763f6a530ef7a63850a4ee7e64}{GPU}} = True
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ad95d6d0c738adf945cc174e6cb32cd41}{optimizer}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{checkpoint}} = torch.\+load(\mbox{\hyperlink{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604}{checkpoint\+\_\+path}}+\textquotesingle{}checkpoint.\+tar\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a3dbfd8edf7e8e094bdd87446604f5cd8}{current\+\_\+epoch}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{checkpoint}}\mbox{[}\textquotesingle{}epoch\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_ab7c0e4d61b96e7f3fc88e0e8616d6b5e}{loss}} = \mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{checkpoint}}\mbox{[}\textquotesingle{}loss\textquotesingle{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_acf1caf3d9a32525fff91a3547811585c}{mu\+\_\+list}} = list()
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a81e0b08960d68e2864b9f16dbcc6415f}{sdf\+\_\+test\+\_\+list}} = list()
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534}{isov\+\_\+test\+\_\+list}} = list()
+\item 
+int \mbox{\hyperlink{namespacemain__train__sdf__vae_a66ee3538a50260ce3264150d619c18bb}{train\+\_\+loss}} = 0
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a53e33e0f261bcd0db416919c277cefd4}{sdf\+\_\+data}} = sdf\+\_\+data.\+to(\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{device}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_af4d5f1c6f5d489e829c9e23b2fb1faef}{isovalues}} = isovalues.\+to(\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{device}})
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_aa5892a78f475e930c8f89ea7f4bb0b33}{sdf\+\_\+hat}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a192b11735b5f58039e3a0f4b4da3aa86}{iso\+\_\+hat}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a86eb619450695f4c6d1d3de3f3047c32}{mu}}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a758b22a4984b8c228413096d7962d567}{logvar}}
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_ae7056d51e0e394c73ff3f7c23f30d62f}{save\+\_\+model}} = \textquotesingle{}VAEmodel\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_a3566212d6ab7ef421a82beedd87ee7f1}{save\+\_\+mu}} = \textquotesingle{}mu\+\_\+list\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_a8535eca40025c2afcbc2402ee4cf0029}{mu\+\_\+list\+\_\+test}} = list()
+\item 
+int \mbox{\hyperlink{namespacemain__train__sdf__vae_a2cf92e104349d90af939e839f8c61d64}{test\+\_\+loss}} = 0
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_a9122645b490b172db17b153509d71fd7}{save\+\_\+sdf\+\_\+test}} = \textquotesingle{}sdf\+\_\+test\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\item 
+\mbox{\hyperlink{namespacemain__train__sdf__vae_abc50677452cc6ac58ae59682f307aa07}{iso\+\_\+test\+\_\+list}} = torch.\+cat(\mbox{\hyperlink{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534}{isov\+\_\+test\+\_\+list}},dim=0)
+\item 
+str \mbox{\hyperlink{namespacemain__train__sdf__vae_a1e9bc19d72e17725ee47393906fc0a4e}{iso\+\_\+sdf\+\_\+test}} = \textquotesingle{}iso\+\_\+test\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c}\label{namespacemain__train__sdf__vae_aa1db260364e0aac9845929a115698a7c} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!lossfunc@{lossfunc}}
+\index{lossfunc@{lossfunc}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{lossfunc()}{lossfunc()}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+lossfunc (\begin{DoxyParamCaption}\item[{}]{sdf,  }\item[{}]{sdf\+\_\+hat,  }\item[{}]{iso,  }\item[{}]{iso\+\_\+hat,  }\item[{}]{mu,  }\item[{}]{logvar,  }\item[{}]{beta }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Computes the Variational Autoencoder (VAE) loss function, combining reconstruction loss and KL divergence.
+Args
+Returns:
+    torch.Tensor: The computed loss value.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00070}{70}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}\label{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!batch\_size@{batch\_size}}
+\index{batch\_size@{batch\_size}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{batch\_size}{batch\_size}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+batch\+\_\+size = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}batch\+\_\+size\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00022}{22}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_aff79509cba4ad21a42b57be71e19a729}\label{namespacemain__train__sdf__vae_aff79509cba4ad21a42b57be71e19a729} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!beta@{beta}}
+\index{beta@{beta}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{beta}{beta}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+beta = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}beta\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00024}{24}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}\label{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!checkpoint@{checkpoint}}
+\index{checkpoint@{checkpoint}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{checkpoint}{checkpoint}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+checkpoint = torch.\+load(\mbox{\hyperlink{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604}{checkpoint\+\_\+path}}+\textquotesingle{}checkpoint.\+tar\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00088}{88}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604}\label{namespacemain__train__sdf__vae_abb4d50465d011e79819547adcef31604} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!checkpoint\_path@{checkpoint\_path}}
+\index{checkpoint\_path@{checkpoint\_path}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{checkpoint\_path}{checkpoint\_path}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+checkpoint\+\_\+path = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}log\+\_\+path\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00034}{34}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}\label{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!config@{config}}
+\index{config@{config}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+config = json.\+load(f)}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00019}{19}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_ababed1a6b8e88ac368862bc3bfbbec55}\label{namespacemain__train__sdf__vae_ababed1a6b8e88ac368862bc3bfbbec55} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!cuda\_manual\_seed@{cuda\_manual\_seed}}
+\index{cuda\_manual\_seed@{cuda\_manual\_seed}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{cuda\_manual\_seed}{cuda\_manual\_seed}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+cuda\+\_\+manual\+\_\+seed = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}random\+\_\+seed\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}cuda\+\_\+manual\+\_\+seed\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00028}{28}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a3dbfd8edf7e8e094bdd87446604f5cd8}\label{namespacemain__train__sdf__vae_a3dbfd8edf7e8e094bdd87446604f5cd8} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!current\_epoch@{current\_epoch}}
+\index{current\_epoch@{current\_epoch}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{current\_epoch}{current\_epoch}}
+{\footnotesize\ttfamily int main\+\_\+train\+\_\+sdf\+\_\+vae.\+current\+\_\+epoch = \mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{checkpoint}}\mbox{[}\textquotesingle{}epoch\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00091}{91}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a46823295cf555c0b8da6939b676355bb}\label{namespacemain__train__sdf__vae_a46823295cf555c0b8da6939b676355bb} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!data\_path\_test@{data\_path\_test}}
+\index{data\_path\_test@{data\_path\_test}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{data\_path\_test}{data\_path\_test}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+data\+\_\+path\+\_\+test = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}test\+\_\+data\+\_\+path\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00032}{32}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d}\label{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!data\_path\_train@{data\_path\_train}}
+\index{data\_path\_train@{data\_path\_train}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{data\_path\_train}{data\_path\_train}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+data\+\_\+path\+\_\+train = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}train\+\_\+data\+\_\+path\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00031}{31}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}\label{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!dataset\_train@{dataset\_train}}
+\index{dataset\_train@{dataset\_train}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{dataset\_train}{dataset\_train}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+dataset\+\_\+train = \mbox{\hyperlink{classload__data__h5py_1_1_s_d_f_dataset}{SDFDataset}}(\mbox{\hyperlink{namespacemain__train__sdf__vae_aa2cac56e0cf5b5d963fb5a15c6c02a4d}{data\+\_\+path\+\_\+train}})}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00042}{42}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}\label{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!device@{device}}
+\index{device@{device}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+device = torch.\+device("{}cuda\+:0"{})}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00054}{54}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_af971a13cfbebc7ff89e7d12fe95a4afe}\label{namespacemain__train__sdf__vae_af971a13cfbebc7ff89e7d12fe95a4afe} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!epochs@{epochs}}
+\index{epochs@{epochs}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{epochs}{epochs}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+epochs = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}epochs\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00026}{26}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_af34885763f6a530ef7a63850a4ee7e64}\label{namespacemain__train__sdf__vae_af34885763f6a530ef7a63850a4ee7e64} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!GPU@{GPU}}
+\index{GPU@{GPU}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{GPU}{GPU}}
+{\footnotesize\ttfamily bool main\+\_\+train\+\_\+sdf\+\_\+vae.\+GPU = True}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00055}{55}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a192b11735b5f58039e3a0f4b4da3aa86}\label{namespacemain__train__sdf__vae_a192b11735b5f58039e3a0f4b4da3aa86} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!iso\_hat@{iso\_hat}}
+\index{iso\_hat@{iso\_hat}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{iso\_hat}{iso\_hat}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+iso\+\_\+hat}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00107}{107}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a1e9bc19d72e17725ee47393906fc0a4e}\label{namespacemain__train__sdf__vae_a1e9bc19d72e17725ee47393906fc0a4e} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!iso\_sdf\_test@{iso\_sdf\_test}}
+\index{iso\_sdf\_test@{iso\_sdf\_test}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{iso\_sdf\_test}{iso\_sdf\_test}}
+{\footnotesize\ttfamily str main\+\_\+train\+\_\+sdf\+\_\+vae.\+iso\+\_\+sdf\+\_\+test = \textquotesingle{}iso\+\_\+test\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00150}{150}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_abc50677452cc6ac58ae59682f307aa07}\label{namespacemain__train__sdf__vae_abc50677452cc6ac58ae59682f307aa07} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!iso\_test\_list@{iso\_test\_list}}
+\index{iso\_test\_list@{iso\_test\_list}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{iso\_test\_list}{iso\_test\_list}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+iso\+\_\+test\+\_\+list = torch.\+cat(\mbox{\hyperlink{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534}{isov\+\_\+test\+\_\+list}},dim=0)}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00149}{149}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534}\label{namespacemain__train__sdf__vae_a8e3d0659bf22b3f24040293ce43fe534} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!isov\_test\_list@{isov\_test\_list}}
+\index{isov\_test\_list@{isov\_test\_list}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{isov\_test\_list}{isov\_test\_list}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+isov\+\_\+test\+\_\+list = list()}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00101}{101}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_af4d5f1c6f5d489e829c9e23b2fb1faef}\label{namespacemain__train__sdf__vae_af4d5f1c6f5d489e829c9e23b2fb1faef} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!isovalues@{isovalues}}
+\index{isovalues@{isovalues}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{isovalues}{isovalues}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+isovalues = isovalues.\+to(\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{device}})}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00106}{106}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}\label{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!latent\_dim@{latent\_dim}}
+\index{latent\_dim@{latent\_dim}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{latent\_dim}{latent\_dim}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+latent\+\_\+dim = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}model\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}latent\+\_\+dim\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00023}{23}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a55e5a67fc29ff74d31c40e109d22d399}\label{namespacemain__train__sdf__vae_a55e5a67fc29ff74d31c40e109d22d399} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!learning\_rate@{learning\_rate}}
+\index{learning\_rate@{learning\_rate}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{learning\_rate}{learning\_rate}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+learning\+\_\+rate = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}learning\+\_\+rate\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00025}{25}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a583d7c3cb424b7ef60dfa298e96a9c3d}\label{namespacemain__train__sdf__vae_a583d7c3cb424b7ef60dfa298e96a9c3d} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!loader\_test@{loader\_test}}
+\index{loader\_test@{loader\_test}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{loader\_test}{loader\_test}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+loader\+\_\+test = Data\+Loader(\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{dataset\+\_\+train}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}, shuffle=True)}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00045}{45}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a3fa26398e18dc38a0ea79e9e3646d16a}\label{namespacemain__train__sdf__vae_a3fa26398e18dc38a0ea79e9e3646d16a} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!loader\_train@{loader\_train}}
+\index{loader\_train@{loader\_train}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{loader\_train}{loader\_train}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+loader\+\_\+train = Data\+Loader(\mbox{\hyperlink{namespacemain__train__sdf__vae_ae4fd1d802fda2ac4f78cd4fed3695812}{dataset\+\_\+train}}, \mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_a5432cce7c29ac4aa9e21b56e4b283253}{batch\+\_\+size}}, shuffle=True)}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00043}{43}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a6be6b7ce46d5160d499180fafe067baa}\label{namespacemain__train__sdf__vae_a6be6b7ce46d5160d499180fafe067baa} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!loading\_checkpoint@{loading\_checkpoint}}
+\index{loading\_checkpoint@{loading\_checkpoint}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{loading\_checkpoint}{loading\_checkpoint}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+loading\+\_\+checkpoint = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}train\+\_\+params\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}loading\+\_\+checkpoint\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00029}{29}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a758b22a4984b8c228413096d7962d567}\label{namespacemain__train__sdf__vae_a758b22a4984b8c228413096d7962d567} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!logvar@{logvar}}
+\index{logvar@{logvar}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{logvar}{logvar}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+logvar}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00107}{107}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_ab7c0e4d61b96e7f3fc88e0e8616d6b5e}\label{namespacemain__train__sdf__vae_ab7c0e4d61b96e7f3fc88e0e8616d6b5e} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!loss@{loss}}
+\index{loss@{loss}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{loss}{loss}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+loss = \mbox{\hyperlink{namespacemain__train__sdf__vae_a361f7a1e94c1088a60f8c6d2e4453807}{checkpoint}}\mbox{[}\textquotesingle{}loss\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00092}{92}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a9ecafbcdd8c29c2c43315a1feba51441}\label{namespacemain__train__sdf__vae_a9ecafbcdd8c29c2c43315a1feba51441} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!manual\_seed@{manual\_seed}}
+\index{manual\_seed@{manual\_seed}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{manual\_seed}{manual\_seed}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+manual\+\_\+seed = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}random\+\_\+seed\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}manual\+\_\+seed\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00027}{27}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a21508ee27eea43fa4df1f1c3b57a8b62}\label{namespacemain__train__sdf__vae_a21508ee27eea43fa4df1f1c3b57a8b62} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!model@{model}}
+\index{model@{model}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+model = \mbox{\hyperlink{class_s_d_f___v_a_e__improved_1_1_s_d_f___v_a_e}{SDF\+\_\+\+VAE}}(input\+\_\+channels=1, \mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{latent\+\_\+dim}}=\mbox{\hyperlink{namespacemain__train__sdf__vae_aad8bcb60ec64cd10492b88efe672b949}{latent\+\_\+dim}}, D=\mbox{\hyperlink{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3}{sdf\+\_\+dimen}})}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00046}{46}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a86eb619450695f4c6d1d3de3f3047c32}\label{namespacemain__train__sdf__vae_a86eb619450695f4c6d1d3de3f3047c32} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!mu@{mu}}
+\index{mu@{mu}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{mu}{mu}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+mu}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00107}{107}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_acf1caf3d9a32525fff91a3547811585c}\label{namespacemain__train__sdf__vae_acf1caf3d9a32525fff91a3547811585c} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!mu\_list@{mu\_list}}
+\index{mu\_list@{mu\_list}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{mu\_list}{mu\_list}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+mu\+\_\+list = list()}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00099}{99}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a8535eca40025c2afcbc2402ee4cf0029}\label{namespacemain__train__sdf__vae_a8535eca40025c2afcbc2402ee4cf0029} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!mu\_list\_test@{mu\_list\_test}}
+\index{mu\_list\_test@{mu\_list\_test}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{mu\_list\_test}{mu\_list\_test}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+mu\+\_\+list\+\_\+test = list()}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00131}{131}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_ad95d6d0c738adf945cc174e6cb32cd41}\label{namespacemain__train__sdf__vae_ad95d6d0c738adf945cc174e6cb32cd41} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!optimizer@{optimizer}}
+\index{optimizer@{optimizer}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{optimizer}{optimizer}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+optimizer}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ torch.optim.Adam(}
+\DoxyCodeLine{00002\ \ \ \ \ model.parameters(),}
+\DoxyCodeLine{00003\ \ \ \ \ lr=learning\_rate,}
+\DoxyCodeLine{00004\ )}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00063}{63}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_ae7056d51e0e394c73ff3f7c23f30d62f}\label{namespacemain__train__sdf__vae_ae7056d51e0e394c73ff3f7c23f30d62f} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!save\_model@{save\_model}}
+\index{save\_model@{save\_model}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{save\_model}{save\_model}}
+{\footnotesize\ttfamily str main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+model = \textquotesingle{}VAEmodel\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00119}{119}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a3566212d6ab7ef421a82beedd87ee7f1}\label{namespacemain__train__sdf__vae_a3566212d6ab7ef421a82beedd87ee7f1} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!save\_mu@{save\_mu}}
+\index{save\_mu@{save\_mu}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{save\_mu}{save\_mu}}
+{\footnotesize\ttfamily str main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+mu = \textquotesingle{}mu\+\_\+list\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00126}{126}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_af2a5c594df07a846601e78e5b076ef4d}\label{namespacemain__train__sdf__vae_af2a5c594df07a846601e78e5b076ef4d} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!save\_path@{save\_path}}
+\index{save\_path@{save\_path}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{save\_path}{save\_path}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+path = \mbox{\hyperlink{namespacemain__train__sdf__vae_ade44f4dfabd7c420662f089fbd6dc167}{config}}\mbox{[}\textquotesingle{}Path\textquotesingle{}\mbox{]}\mbox{[}\textquotesingle{}save\+\_\+path\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00033}{33}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a9122645b490b172db17b153509d71fd7}\label{namespacemain__train__sdf__vae_a9122645b490b172db17b153509d71fd7} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!save\_sdf\_test@{save\_sdf\_test}}
+\index{save\_sdf\_test@{save\_sdf\_test}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{save\_sdf\_test}{save\_sdf\_test}}
+{\footnotesize\ttfamily str main\+\_\+train\+\_\+sdf\+\_\+vae.\+save\+\_\+sdf\+\_\+test = \textquotesingle{}sdf\+\_\+test\+\_\+\textquotesingle{}+str(epoch) + \textquotesingle{}.pt\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00147}{147}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a53e33e0f261bcd0db416919c277cefd4}\label{namespacemain__train__sdf__vae_a53e33e0f261bcd0db416919c277cefd4} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!sdf\_data@{sdf\_data}}
+\index{sdf\_data@{sdf\_data}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{sdf\_data}{sdf\_data}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+data = sdf\+\_\+data.\+to(\mbox{\hyperlink{namespacemain__train__sdf__vae_a6ff2eb51e955e306d7d044eb36f6bb1b}{device}})}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00105}{105}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3}\label{namespacemain__train__sdf__vae_a3bd44dbd750a54201153cc6b6bc4a5e3} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!sdf\_dimen@{sdf\_dimen}}
+\index{sdf\_dimen@{sdf\_dimen}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{sdf\_dimen}{sdf\_dimen}}
+{\footnotesize\ttfamily int main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+dimen = 30}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00040}{40}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_aa5892a78f475e930c8f89ea7f4bb0b33}\label{namespacemain__train__sdf__vae_aa5892a78f475e930c8f89ea7f4bb0b33} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!sdf\_hat@{sdf\_hat}}
+\index{sdf\_hat@{sdf\_hat}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{sdf\_hat}{sdf\_hat}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+hat}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00107}{107}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a81e0b08960d68e2864b9f16dbcc6415f}\label{namespacemain__train__sdf__vae_a81e0b08960d68e2864b9f16dbcc6415f} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!sdf\_test\_list@{sdf\_test\_list}}
+\index{sdf\_test\_list@{sdf\_test\_list}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{sdf\_test\_list}{sdf\_test\_list}}
+{\footnotesize\ttfamily main\+\_\+train\+\_\+sdf\+\_\+vae.\+sdf\+\_\+test\+\_\+list = list()}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00100}{100}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a2cf92e104349d90af939e839f8c61d64}\label{namespacemain__train__sdf__vae_a2cf92e104349d90af939e839f8c61d64} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!test\_loss@{test\_loss}}
+\index{test\_loss@{test\_loss}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{test\_loss}{test\_loss}}
+{\footnotesize\ttfamily int main\+\_\+train\+\_\+sdf\+\_\+vae.\+test\+\_\+loss = 0}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00132}{132}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
+\Hypertarget{namespacemain__train__sdf__vae_a66ee3538a50260ce3264150d619c18bb}\label{namespacemain__train__sdf__vae_a66ee3538a50260ce3264150d619c18bb} 
+\index{main\_train\_sdf\_vae@{main\_train\_sdf\_vae}!train\_loss@{train\_loss}}
+\index{train\_loss@{train\_loss}!main\_train\_sdf\_vae@{main\_train\_sdf\_vae}}
+\doxysubsubsection{\texorpdfstring{train\_loss}{train\_loss}}
+{\footnotesize\ttfamily int main\+\_\+train\+\_\+sdf\+\_\+vae.\+train\+\_\+loss = 0}
+
+
+
+Definition at line \mbox{\hyperlink{main__train__sdf__vae_8py_source_l00103}{103}} of file \mbox{\hyperlink{main__train__sdf__vae_8py_source}{main\+\_\+train\+\_\+sdf\+\_\+vae.\+py}}.
+
