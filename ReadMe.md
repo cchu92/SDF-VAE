@@ -18,5 +18,8 @@ Each cell in the dataset is saved as a  `.npy` named according to its index(e.g.
 2. The structure of the Convolutional Neural Network (CNN) depends on the resolution of the SDFs. By default, the resolution is set to $50^3$, If you change the resolution, you must also adjust the parameters of the last layers to guarantee the same output resolution.
 3. hight recomend GPU mahinve to run the trainig code `main_train_sdf_vae.py`, after training, reuse the model by `reuse_model.py`
 
+## Display the reconstruct surface by decoder 
+[View STL model](./stl/bigdata_c2_0.stl)
+
 
 
